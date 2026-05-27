@@ -1,0 +1,617 @@
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+body{
+    background:black;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* FUNDO QUADRICULADO */
+
+.fundo{
+    width:100%;
+    min-height:200vh;
+    position:relative;
+    background-color:#e7e2e2;
+    background-image:
+    linear-gradient(to right, rgba(0,0,0,0.85) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(0,0,0,0.85) 2px, transparent 2px);
+    background-size:105px 105px;
+    overflow:hidden;
+}
+
+/* ESTOJO PORTA COISINHAS */
+
+.estojo{
+    position:absolute;
+    width:200px;
+    height:200px;
+    top:5px;
+    left:50%;
+    transform: rotate(18deg) scale(1.0);
+    transform-origin:center;
+    z-index:5;
+}
+
+/* CADERNO */
+
+.caderno{
+    position:absolute;
+    width:900px;
+    height:520px;
+    left:50%;
+    top:60%;
+    transform:translate(-50%, -50%);
+    display:flex;
+    z-index:10;
+    box-shadow: 0px 25px 40px rgba(0,0,0,0.25);
+}
+
+/* PÁGINAS */
+
+.pagina{
+    flex:1;
+    background:#f5eeee;
+    border:5px solid black;
+    position:relative;
+    overflow:hidden;
+    transition: background 0.3s ease;
+    pointer-events: auto;
+}
+
+.pagina::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    box-shadow: inset 0px 0px 35px rgba(0,0,0,0.08);
+    pointer-events:none;
+}
+
+.esquerda{
+    border-right:2px solid black;
+    border-radius:25px 0px 0px 25px;
+}
+
+.direita{
+    border-left:2px solid black;
+    border-radius:0px 25px 25px 0px;
+}
+
+/* ============================================
+   BOTÃO DE COR - REDONDO NO CANTO
+   ============================================ */
+
+.btn-cor {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-cor:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   SELETOR DE COR
+   ============================================ */
+
+.seletor-cor {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 280px;
+    background: white;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.seletor-cor.ativo {
+    display: flex;
+}
+
+.seletor-cor::before {
+    content: "Escolha a cor do caderno";
+    width: 100%;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.cor-opcao {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cor-opcao:hover {
+    transform: scale(1.2);
+    border-color: black;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.cor-opcao.ativa {
+    border-color: black;
+    border-width: 3px;
+    box-shadow: 0 0 0 3px white, 0 0 0 5px black;
+}
+
+/* ============================================
+   BOTÃO DE MÚSICA - REDONDO NO CANTO
+   ============================================ */
+
+.btn-musica {
+    position: fixed;
+    bottom: 30px;
+    right: 100px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-musica:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   PAINEL DE MÚSICA - SPOTIFY
+   ============================================ */
+
+.painel-musica {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 400px;
+    background: white;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.painel-musica.ativo {
+    display: flex;
+}
+
+.painel-musica h3 {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+.painel-musica p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.painel-musica input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+.painel-musica input[type="text"]:focus {
+    border-color: #1db954;
+}
+
+.painel-musica button {
+    padding: 12px 20px;
+    background: #1db954;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.painel-musica button:hover {
+    background: #1ed760;
+    transform: scale(1.02);
+}
+
+#spotifyPlayer {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#spotifyPlayer iframe {
+    width: 100%;
+    height: 352px;
+    border: none;
+    border-radius: 12px;
+    display: block;
+}
+
+/* ============================================
+   CALENDÁRIO
+   ============================================ */
+
+.calendario-container {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 20;
+}
+
+.calendario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 30;
+}
+
+.calendario-header h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.calendario-header button {
+    background: transparent;
+    border: 2px solid #333;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 50;
+    pointer-events: auto;
+}
+
+.calendario-header button:hover {
+    background: #333;
+    color: white;
+}
+
+.calendario-dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    margin-bottom: 4px;
+}
+
+.calendario-dias-semana span {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    flex: 1;
+}
+
+.dia-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    background: rgba(0,0,0,0.03);
+    height: 32px;
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.dia-calendario:hover {
+    background: rgba(0,0,0,0.1);
+    border-color: #333;
+}
+
+.dia-calendario.hoje {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+.dia-calendario.outro-mes {
+    color: #ccc;
+    background: transparent;
+}
+
+.dia-calendario.selecionado {
+    background: #1db954;
+    color: white;
+    font-weight: bold;
+    border-color: #1db954;
+}
+
+/* ============================================
+   ANOTAÇÕES
+   ============================================ */
+
+.anotacoes-container {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 20;
+}
+
+.anotacoes-container h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.anotacoes-container textarea {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    resize: none;
+    outline: none;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    position: relative;
+    z-index: 30;
+    pointer-events: auto;
+    background-image: linear-gradient(to bottom, transparent 95%, rgba(0,0,0,0.08) 95%);
+    background-size: 100% 28px;
+    background-attachment: local;
+}
+
+.anotacoes-container textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* ============================================
+   FOTOS (externas + slots do estojo)
+   ============================================ */
+
+.foto{
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:white;
+    border:4px solid black;
+    border-radius:18px;
+    overflow:hidden;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow: 0px 10px 18px rgba(0,0,0,0.18);
+    transition:0.3s;
+    z-index:10;
+}
+
+.foto:hover{
+    transform:scale(1.05) rotate(-2deg);
+}
+
+.foto input{
+    display:none;
+}
+
+.foto img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.foto span{
+    font-size:60px;
+    color:#666;
+}
+
+/* FOTOS EXTERNAS - POSIÇÕES */
+
+.foto1{ top:40px; left:60px; transform:rotate(-8deg); user-select:none; }
+.foto2{ top:60px; right:80px; transform:rotate(10deg); user-select:none; }
+.foto3{ bottom:120px; left:90px; transform:rotate(6deg); user-select:none; }
+.foto4{ bottom:140px; right:70px; transform:rotate(-10deg); user-select:none; }
+
+/* ============================================
+   SLOTS DO ESTOJO - SUAS POSIÇÕES EXATAS
+   ============================================ */
+
+.foto.slot {
+    background: transparent;
+    border: 2px dashed rgba(255,255,255,0.5);
+    border-radius: 6px;
+    z-index: 6;
+    overflow: hidden;
+}
+
+.foto.slot:hover {
+    border-color: rgba(255,255,255,0.9);
+    transform: scale(1.05);
+}
+
+.foto.slot span {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* SUAS POSIÇÕES - NÃO ALTERADAS */
+.foto.slot1 { width: 52px; height: 52px; top:200px; left: calc(70% - 68px); transform: rotate(18deg); }
+.foto.slot2 { width: 52px; height: 52px; top: 200px; left: calc(58% + 34px); transform: rotate(18deg); }
+.foto.slot3 { width: 52px; height: 30px; top: 260px; left: calc(63% - 50px); transform: rotate(18deg); }
+.foto.slot4 { width: 52px; height: 30px; top: 260px; left: calc(63% + 16px); transform: rotate(18deg); }
+.foto.slot5 { width: 52px; height: 30px; top: 300px; left: calc(62% + 16px); transform: rotate(18deg); }
+.foto.slot6 { width: 52px; height: 30px; top: 300px; left: calc(62% - 50px); transform: rotate(18deg); }
+.foto.slot7 { width: 60px; height: 60px; top:200px; left: calc(76% - 68px); transform: rotate(2deg); }
+.foto.slot8 { width: 100px; height: 100px; top:200px; left: calc(55% - 68px); transform: rotate(15deg); }
+.foto.slot9 { width: 60px; height: 60px; top:150px; left: calc(50% - 68px); transform: rotate(25deg); }
+.foto.slot10 { width: 60px; height: 60px; top:350px; left: calc(55% - 68px); transform: rotate(20deg); }
+.foto.slot11 { width: 60px; height: 60px; top:360px; left: calc(61% - 68px); transform: rotate(15deg); }
+.foto.slot12 { width: 60px; height: 60px; top:370px; left: calc(66% - 68px); transform: rotate(15deg); }
+.foto.slot13 { width: 60px; height: 60px; top:440px; left: calc(66% - 68px); transform: rotate(15deg); }
+.foto.slot14 { width: 60px; height: 60px; top:440px; left: calc(61% - 68px); transform: rotate(15deg); }
+.foto.slot15 { width: 60px; height: 60px; top:425px; left: calc(55% - 68px); transform: rotate(20deg); }
+
+.foto.slot16 { width: 100px; height: 100px; top:500px; left: calc(80% - 68px); transform: rotate(20deg);z-index: 999; }
+.foto.slot17 { width: 100px; height: 100px; top:900px; left: calc(80% - 68px); transform: rotate(20deg);z-index: 999; }
+
+/* ============================================
+   ESTADO PNG - SEM BORDA, SEM FUNDO
+   ============================================ */
+
+.foto.sem-borda {
+    border: none !important;
+    background: transparent !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 50px;
+    min-height: 50px;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.foto.sem-borda img {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 0;
+    pointer-events: auto;
+}
+
+.foto.sem-borda span {
+    display: none !important;
+}
+
+.foto.slot.sem-borda {
+    width: auto !important;
+    height: auto !important;
+}
+
+.foto.slot.sem-borda img {
+    max-width: 80px;
+    max-height: 80px;
+}
+.btn-17{
+    position:absolute;
+
+    left:50%;
+    top: 1005px;
+
+    transform: translateX(-50%);
+
+    z-index:50;
+}
+/* =========================================
+MOBILE DESKTOP MODE
+========================================= */
+
+@media screen and (max-width:768px){
+
+html{
+    zoom:0.28;
+}
+
+body{
+    overflow-x:auto;
+    overflow-y:auto;
+}
+
+.fundo{
+    min-width:1400px;
+}
+
+}

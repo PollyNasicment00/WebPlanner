@@ -1,0 +1,139 @@
+/* BOTÃO COMEÇAR */
+
+.btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before{
+    border:0 solid;
+    box-sizing:border-box;
+}
+
+.btn-17{
+    margin-top:40px;
+
+    -webkit-tap-highlight-color:transparent;
+    -webkit-appearance:button;
+
+    background-color:black;
+    background-image:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    font-size:22px;
+    font-weight:900;
+
+    line-height:1.5;
+
+    -webkit-mask-image:-webkit-radial-gradient(white, black);
+
+    padding:0;
+
+    text-transform:uppercase;
+
+    border-radius:999px;
+
+    border-width:2px;
+
+    padding:0.8rem 3rem;
+
+    z-index:0;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:0.3s;
+
+    box-shadow:
+    0px 0px 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-17 .text-container{
+    overflow:hidden;
+    position:relative;
+
+    display:block;
+
+    mix-blend-mode:difference;
+}
+
+.btn-17 .text{
+    display:block;
+    position:relative;
+}
+
+.btn-17:hover .text{
+    animation:move-up-alternate 0.3s forwards;
+}
+
+@keyframes move-up-alternate{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(80%);
+    }
+
+    51%{
+        transform:translateY(-80%);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+.btn-17:after,
+.btn-17:before{
+    --skew:0.2;
+
+    background:white;
+
+    content:"";
+
+    display:block;
+
+    height:102%;
+
+    left:calc(-50% - 50% * var(--skew));
+
+    pointer-events:none;
+
+    position:absolute;
+
+    top:-104%;
+
+    transform:
+    skew(calc(150deg * var(--skew)))
+    translateY(var(--progress, 0));
+
+    transition:transform 0.2s ease;
+
+    width:100%;
+}
+
+.btn-17:after{
+    --progress:0%;
+
+    left:calc(50% + 50% * var(--skew));
+
+    top:102%;
+
+    z-index:-1;
+}
+
+.btn-17:hover:before{
+    --progress:100%;
+}
+
+.btn-17:hover:after{
+    --progress:-102%;
+}

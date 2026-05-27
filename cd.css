@@ -1,0 +1,152 @@
+/* MARQUEE ALBUNS */
+
+.marquee-albuns{
+    width:100%;
+
+    background:black;
+
+    padding:40px 0;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* ESTEIRA */
+
+.marquee-track{
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    width:max-content;
+
+    animation:marquee 18s linear infinite;
+}
+
+/* PAUSA TUDO */
+
+.marquee-albuns:hover .marquee-track{
+    animation-play-state:paused;
+}
+
+/* MOVIMENTO */
+
+@keyframes marquee{
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* ALBUM */
+
+.album{
+    position:relative;
+
+    width:180px;
+    height:180px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+margin-right:-50px;
+    cursor:pointer;
+
+    transition:0.5s;
+}
+
+/* CD */
+
+.cd{
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    background:url("cd.png");
+    background-size:cover;
+
+    left:10px;
+
+    z-index:1;
+
+    animation:girar 5s linear infinite;
+
+    transition:0.5s;
+}
+
+/* CAPA */
+
+.album img{
+    width:180px;
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    position:relative;
+
+    z-index:2;
+
+    transition:0.5s;
+
+    transform:perspective(500px) rotateY(-18deg);
+
+    border:3px solid white;
+
+    box-shadow:
+    0px 0px 20px rgba(255,255,255,0.15);
+}
+
+/* HOVER */
+
+.album:hover .cd{
+    left:-70px;
+}
+
+.album:hover img{
+    transform:
+    perspective(500px)
+    rotateY(-5deg)
+    scale(1.05);
+}
+
+/* TEXTO */
+
+.album span{
+    position:absolute;
+
+    bottom:-40px;
+
+    color:white;
+
+    font-family:"dealer";
+
+    font-size:22px;
+
+    opacity:0;
+
+    transition:0.4s;
+}
+
+.album:hover span{
+    opacity:1;
+}
+
+/* GIRAR CD */
+
+@keyframes girar{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
