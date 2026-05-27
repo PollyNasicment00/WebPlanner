@@ -667,25 +667,15 @@ body{
 }
 
 }
-/* =========================================
-BOTÃO VOLTAR MOBILE FIX
-========================================= */
-
-@media screen and (max-width:768px){
-
 .btn-17{
-    position:fixed !important;
+    position:fixed;
 
-    bottom:20px !important;
-    left:50% !important;
+    left:50%;
+    bottom:25px;
 
-    transform:translateX(-50%) scale(2.8) !important;
+    transform:
+    translateX(-50%)
+    scale(0.9);
 
-    z-index:999999999 !important;
-
-    display:block !important;
-    opacity:1 !important;
-    visibility:visible !important;
-}
-
+    z-index:999999;
 }
