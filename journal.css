@@ -596,35 +596,48 @@ body{
     z-index:50;
 }
 /* =========================================
-MOBILE DESKTOP MODE
+MOBILE DESKTOP FIX
 ========================================= */
 
 @media screen and (max-width:768px){
 
 html{
-    zoom:0.28;
+    zoom:0.33;
 }
 
 html,
 body{
-    overflow-x:auto;
+    margin:0;
+    padding:0;
+
+    width:1400px;
+    height:auto;
+
+    overflow-x:hidden;
     overflow-y:auto;
 
-    min-width:1400px;
+    background:#f5eeee;
 }
 
-/* mantém tudo desktop */
+/* remove espaço preto */
 
 body{
+    display:block;
+}
+
+/* mantém layout original */
+
+.fundo{
+    width:1400px;
+    min-height:100vh;
     position:relative;
 }
 
-/* impede elementos de quebrar */
+/* evita crescer infinito */
 
-.fundo,
 .caderno,
 .estojo{
-    min-width:1400px;
+    position:absolute;
 }
 
 }
