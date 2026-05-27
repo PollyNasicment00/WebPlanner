@@ -596,48 +596,73 @@ body{
     z-index:50;
 }
 /* =========================================
-MOBILE DESKTOP FIX
+RESPONSIVO IGUAL DESKTOP
+SEM ALTERAR POSIÇÕES
 ========================================= */
 
 @media screen and (max-width:768px){
-
-html{
-    zoom:0.33;
-}
 
 html,
 body{
     margin:0;
     padding:0;
 
-    width:1400px;
-    height:auto;
-
-    overflow-x:hidden;
+    width:100%;
+    overflow-x:auto;
     overflow-y:auto;
 
-    background:#f5eeee;
+    background:#e7e2e2;
 }
 
-/* remove espaço preto */
-
-body{
-    display:block;
-}
-
-/* mantém layout original */
-
+/* mantém o layout original inteiro */
 .fundo{
     width:1400px;
-    min-height:100vh;
+    min-height:1700px;
+
     position:relative;
+
+    transform:scale(0.28);
+    transform-origin:top left;
 }
 
-/* evita crescer infinito */
+/* faz o body ocupar o tamanho reduzido */
+body{
+    width:calc(1400px * 0.28);
+    min-height:calc(1700px * 0.28);
+}
 
+/* evita cortes */
 .caderno,
-.estojo{
+.estojo,
+.foto,
+.btn-17{
     position:absolute;
+}
+
+/* botões flutuantes menores */
+.btn-cor,
+.btn-musica{
+    width:45px;
+    height:45px;
+    font-size:20px;
+}
+
+/* painéis menores */
+.seletor-cor{
+    width:220px;
+    right:10px;
+    bottom:80px;
+}
+
+.painel-musica{
+    width:260px;
+    right:10px;
+    bottom:80px;
+}
+
+/* spotify menor */
+#spotifyPlayer iframe{
+    height:200px;
 }
 
 }
