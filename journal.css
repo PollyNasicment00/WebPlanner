@@ -663,6 +663,21 @@ body{
 /* spotify menor */
 #spotifyPlayer iframe{
     height:200px;
+    
 }
 
+}
+/* BOTÃO VOLTAR */
+
+.btn-17{
+    position:absolute;
+
+    left:50%;
+    top:1050px;
+
+    transform:
+    translateX(-50%)
+    scale(0.9);
+
+    z-index:999;
 }
