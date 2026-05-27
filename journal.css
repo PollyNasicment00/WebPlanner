@@ -605,12 +605,25 @@ html{
     zoom:0.28;
 }
 
+html,
 body{
     overflow-x:auto;
     overflow-y:auto;
+
+    min-width:1400px;
 }
 
-.fundo{
+/* mantém tudo desktop */
+
+body{
+    position:relative;
+}
+
+/* impede elementos de quebrar */
+
+.fundo,
+.caderno,
+.estojo{
     min-width:1400px;
 }
 
