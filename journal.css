@@ -670,14 +670,14 @@ body{
 /* BOTÃO VOLTAR */
 
 .btn-17{
-    position:absolute;
+    position:fixed;
 
     left:50%;
-    top:1050px;
+    bottom:25px;
 
     transform:
     translateX(-50%)
     scale(0.9);
 
-    z-index:999;
+    z-index:999999;
 }
